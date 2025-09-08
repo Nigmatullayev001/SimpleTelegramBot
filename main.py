@@ -9,8 +9,11 @@ from keyboard import (
     custom_text_size, custom_image_size, custom_page_split
 )
 from generation import generate_file
+from dotenv import load_dotenv
 
-TOKEN = "8213032593:AAE-hXQ2TNJF_wOc12TlrMMfotaOrUUDke4"
+load_dotenv()  # .env fayldan o‘qiydi
+TOKEN = os.getenv("TOKEN")
+
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
