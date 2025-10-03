@@ -1,19 +1,13 @@
 import asyncio
 import os
-from aiogram import Bot, Dispatcher, F
-from aiogram.types import Message, CallbackQuery, FSInputFile
+from aiogram import Bot, Dispatcher
+from aiogram.types import Message
 from aiogram.filters import Command
 from dotenv import load_dotenv
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 from aiohttp import web
 
-from keyboard import (
-    get_format_keyboard, save_request, get_template_keyboard,
-    custom_text_size, custom_page_split
-)
-from generation import generate_file
-
-# Load environment variables
+from keyboard import get_template_keyboard
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
 RAILWAY_URL = os.getenv("RAILWAY_URL")
@@ -44,24 +38,22 @@ async def start(message: Message):
     )
 
 
-# qolgan handlerlaringiz ham o‘sha-o‘sha...
-
-
-async def on_startup(app):
-    """Webhook o‘rnatish"""
-    webhook_path = f"/webhook/{TOKEN}"
-    await bot.set_webhook(f"{RAILWAY_URL}{webhook_path}")
-
-
 def main():
     app = web.Application()
     webhook_path = f"/webhook/{TOKEN}"
 
+    # Handlersni register qilish
     SimpleRequestHandler(dp, bot).register(app, path=webhook_path)
     setup_application(app, dp, bot=bot)
 
+    # startupda webhook set qilish
+    async def on_startup(app):
+        await bot.set_webhook(f"{RAILWAY_URL}{webhook_path}")
+        print("Webhook set ✅")
+
     app.on_startup.append(on_startup)
     return app
+
 
 
 if __name__ == "__main__":
