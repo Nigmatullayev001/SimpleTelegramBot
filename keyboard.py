@@ -1,18 +1,23 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-def start_keyboard():
-    kb = InlineKeyboardMarkup(
+def get_template_keyboard():
+    return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="🤖 Avtomatik", callback_data="mode_auto")],
-            [InlineKeyboardButton(text="⚙️ Maxsus", callback_data="mode_custom")]
+            [
+                InlineKeyboardButton(text="🟢 Green", callback_data="tpl_green"),
+                InlineKeyboardButton(text="🔵 Blue", callback_data="tpl_blue"),
+            ],
+            [
+                InlineKeyboardButton(text="💖 Pink", callback_data="tpl_pink"),
+                InlineKeyboardButton(text="⬛ Black-Green", callback_data="tpl_black_green"),
+            ]
         ]
     )
-    return kb
 
 
 def get_format_keyboard():
-    kb = InlineKeyboardMarkup(
+    return InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(text="📄 PDF", callback_data="save_pdf"),
@@ -21,16 +26,15 @@ def get_format_keyboard():
             ]
         ]
     )
-    return kb
 
 
 def save_request():
-    kb = InlineKeyboardMarkup(
+    return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="🏁 Tugatish", callback_data="finish")]
+            [InlineKeyboardButton(text="🏁 Tugatish", callback_data="finish")],
+            [InlineKeyboardButton(text="🗑 Tozalash", callback_data="clear")]
         ]
     )
-    return kb
 
 
 def custom_text_size():
@@ -45,29 +49,17 @@ def custom_text_size():
     )
 
 
-def custom_image_size():
-    return InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(text="🖼️ Kichik", callback_data="img_small"),
-                InlineKeyboardButton(text="🖼️ O‘rta", callback_data="img_medium"),
-                InlineKeyboardButton(text="🖼️ Katta", callback_data="img_large"),
-            ]
-        ]
-    )
-
-
 def custom_page_split():
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="1 varoq = 1 element", callback_data="page_1"),
+                InlineKeyboardButton(text="1 element = 1 varoq", callback_data="page_1"),
             ],
             [
-                InlineKeyboardButton(text="1 varoq = 2 element", callback_data="page_2"),
+                InlineKeyboardButton(text="2 element = 1 varoq", callback_data="page_2"),
             ],
             [
-                InlineKeyboardButton(text="1 varoq = 3 element", callback_data="page_3"),
+                InlineKeyboardButton(text="3 element = 1 varoq", callback_data="page_3"),
             ]
         ]
     )
