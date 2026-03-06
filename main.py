@@ -4,7 +4,7 @@ import asyncio
 
 from aiogram.types import InputMediaPhoto
 
-API_TOKEN = "8195800231:AAEvfZYkwOw4RcAxM0FYuhJb16K9WbCoTCM"
+API_TOKEN = "..."
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 
